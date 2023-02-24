@@ -10,8 +10,8 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // make a post request to the API with the form data
-    fetch("https://auth-api-c9.web.app/login", {
-    // fetch("http://localhost:5002/login", {
+    // fetch("https://auth-api-c9.web.app/login", {
+    fetch("http://127.0.0.1:5002/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -21,9 +21,10 @@ export default function Login() {
       // create a new user in the database
       // then...
       .then((res) => res.json())
-      .then((user) => {
+      .then((response) => {
         // 1. do something with the new user
-        setUser(user);
+        setUser(response.user);
+        localStorage.setItem('token', response.token);
         // 2. redirect to the content page
         navigate("/secret");
       })
