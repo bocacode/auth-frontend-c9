@@ -14,8 +14,8 @@ export default function Login() {
       return
     }
     // make a post request to the API with the form data
-    // fetch("https://auth-api-c9.web.app/login", {
-    fetch("http://127.0.0.1:5002/login", {
+    fetch("https://auth-api-c9.web.app/login", {
+    // fetch("http://127.0.0.1:5002/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
