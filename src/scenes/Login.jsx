@@ -9,6 +9,10 @@ export default function Login() {
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(email.length < 6 || password.length < 6) {
+      alert("Please enter a valid email and password")
+      return
+    }
     // make a post request to the API with the form data
     // fetch("https://auth-api-c9.web.app/login", {
     fetch("http://127.0.0.1:5002/login", {
@@ -23,6 +27,10 @@ export default function Login() {
       .then((res) => res.json())
       .then((response) => {
         // 1. do something with the new user
+        if(!response.user) {
+          alert("Invalid email or password")
+          return
+        }
         setUser(response.user);
         localStorage.setItem('token', response.token);
         // 2. redirect to the content page
