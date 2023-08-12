@@ -9,9 +9,18 @@ export default function Login() {
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(email.length < 6 || password.length < 6) {
+      alert("Please enter a valid email and password")
+      return
+    }
     // make a post request to the API with the form data
+<<<<<<< HEAD
     //fetch("https://auth-api-c9.web.app/login", {
      fetch("http://127.0.0.1:5002/login", {
+=======
+    fetch("https://auth-api-c9.web.app/login", {
+    // fetch("http://127.0.0.1:5002/login", {
+>>>>>>> bd42f460f1e47dd573717075dd225e34a3ccc026
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -23,9 +32,18 @@ export default function Login() {
       .then((res) => res.json())
       .then((response) => {
         // 1. do something with the new user
+<<<<<<< HEAD
         setUser(response.user);
          //1.1 sets in token inot browser
          localStorage.setItem("token", response.token)
+=======
+        if(!response.user) {
+          alert("Invalid email or password")
+          return
+        }
+        setUser(response.user);
+        localStorage.setItem('token', response.token);
+>>>>>>> bd42f460f1e47dd573717075dd225e34a3ccc026
         // 2. redirect to the content page
         navigate("/secret");
       })
